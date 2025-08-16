@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="./Logo/Zam-Travel.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .dashboard-main-footer {
+            height: 90px;
+            background: linear-gradient(lightgray, lightslategrey);
+        }
+
+        .search-bar {
+            display: block;
+            margin: 0 auto;
+            width: 50%;
+            height: 40px;
+            border: 1px solid lightslategrey;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar admin-navbar dashboard-navbar">
+        <div class="navbar-logo dashboard-navbar-logo">
+            <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="logo-img">
+            <span class="navbar-title">Zam-Travel</span>
+        </div>
+        <button id="logoutBtn" class="btn-primary dashboard-logout-btn">Log Out</button>
+    </nav>
+    <main>
+        <header class="hero-section">
+            <div class="hero-content">
+                <h1>Admin Dashboard</h1>
+                <p>Manage users and bookings for Zambia Travel Agency.</p>
+            </div>
+            <hr>
+        </header>
+        <section class="section dashboard-section">
+            <div class="dashboard-container">
+                <!-- Registered Users Feature -->
+                <div id="userFeatures">
+                    <h2>Registered Users</h2>
+                    <div class="search-bar">
+                    <input type="text" id="userSearch" placeholder="by name, email, or contact..."><br><br>
+                    </div>
+                    <button id="exportCSV" class="btn-primary">Export</button>
+                    <div class="dashboard-table-wrapper">
+                        <table id="usersTable" class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- User rows will be inserted here by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Bookings Table -->
+                <div class="dashboard-table-wrapper dashboard-table-wrapper-mt">
+                    <table id="bookingsTable" class="dashboard-table">
+                        <thead>
+                            <tr>
+                                <th>Tour Name</th>
+                                <th>Customer Name</th>
+                                <th>Email</th>
+                                <th>Date</th>
+                                <th>People</th>
+                                <th>Amount (ZMW)</th>
+                                <th>Payment</th>
+                                <th>Booking ID</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Bookings will be populated here by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="dashboard-main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="footer-logo-img">
+                <span>Zambia Travel Agency</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms & Conditions</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <p>&copy; 2024 Zambia Travel Agency. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="js/admin-dashboard.js"></script>
+    <style>
+        .logout-btn-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2em;
+        }
+        .dashboard-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2vw;
+            background: linear-gradient(lightgray, lightslategrey);
+            height: 90px;
+        }
+        .dashboard-navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+        .dashboard-logout-btn {
+            margin-left: auto;
+        }
+        .dashboard-table-wrapper {
+            overflow-x: auto;
+        }
+        .dashboard-table-wrapper-mt {
+            margin-top: 2em;
+        }
+    </style>
+</body>
+</html>
+<script>
+function renderUsersTable(filter = '') {
+    const users = JSON.parse(localStorage.getItem('userLogins')) || [];
+    const tbody = document.getElementById('usersTable').getElementsByTagName('tbody')[0];
+    tbody.innerHTML = '';
+    let filtered = users;
+    if (filter) {
+        filtered = users.filter(user =>
+            (user.name && user.name.toLowerCase().includes(filter.toLowerCase())) ||
+            (user.email && user.email.toLowerCase().includes(filter.toLowerCase())) ||
+            (user.contactNumber && user.contactNumber.toLowerCase().includes(filter.toLowerCase()))
+        );
+    }
+    if (filtered.length === 0) {
+        const row = tbody.insertRow();
+        const cell = row.insertCell(0);
+        cell.colSpan = 4;
+        cell.textContent = 'No registered users found.';
+        cell.style.textAlign = 'center';
+        return;
+    }
+    filtered.forEach((user, idx) => {
+        const row = tbody.insertRow();
+        row.insertCell(0).textContent = user.name || '';
+        row.insertCell(1).textContent = user.email || '';
+        row.insertCell(2).textContent = user.contactNumber || '';
+        const actionCell = row.insertCell(3);
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Delete';
+        delBtn.className = 'deleteUserBtn';
+        delBtn.onclick = function() {
+            deleteUser(user.email);
+        };
+        actionCell.appendChild(delBtn);
+    });
+}
+
+function deleteUser(email) {
+    let users = JSON.parse(localStorage.getItem('userLogins')) || [];
+    users = users.filter(u => u.email !== email);
+    localStorage.setItem('userLogins', JSON.stringify(users));
+    renderUsersTable(document.getElementById('userSearch').value);
+}
+
+// --- Booked Tours Table Functionality ---
+function renderBookingsTable() {
+    const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    const tbody = document.getElementById('bookingsTable').getElementsByTagName('tbody')[0];
+    tbody.innerHTML = '';
+    if (bookings.length === 0) {
+        const row = tbody.insertRow();
+        const cell = row.insertCell(0);
+        cell.colSpan = 9;
+        cell.textContent = 'No bookings found.';
+        cell.style.textAlign = 'center';
+        return;
+    }
+    bookings.forEach((booking, idx) => {
+        const row = tbody.insertRow();
+        row.insertCell(0).textContent = booking.tour || booking.tourName || '';
+        row.insertCell(1).textContent = booking.customerName || booking.name || '';
+        row.insertCell(2).textContent = booking.email || '';
+        row.insertCell(3).textContent = booking.date || '';
+        row.insertCell(4).textContent = booking.people || '';
+        row.insertCell(5).textContent = booking.amount || '';
+        row.insertCell(6).textContent = booking.payment || '';
+        row.insertCell(7).textContent = booking.bookingId || booking.bookingID || '';
+        const actionCell = row.insertCell(8);
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Delete';
+        delBtn.className = 'deleteUserBtn';
+        delBtn.onclick = function() {
+            deleteBooking(booking.bookingId || booking.bookingID);
+        };
+        actionCell.appendChild(delBtn);
+    });
+}
+
+function deleteBooking(bookingId) {
+    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    bookings = bookings.filter(b => (b.bookingId || b.bookingID) !== bookingId);
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+    renderBookingsTable();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    renderUsersTable();
+    renderBookingsTable();
+    document.getElementById('userSearch').addEventListener('input', function(e) {
+        renderUsersTable(e.target.value);
+    });
+    document.getElementById('exportCSV').addEventListener('click', function() {
+        const users = JSON.parse(localStorage.getItem('userLogins')) || [];
+        if (users.length === 0) {
+            alert('No users to export.');
+            return;
+        }
+        const header = ['Name', 'Email', 'Contact'];
+        const rows = users.map(u => [u.name, u.email, u.contactNumber]);
+        let csvContent = header.join(',') + '\n';
+        rows.forEach(row => {
+            csvContent += row.map(field => '"' + (field || '') + '"').join(',') + '\n';
+        });
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'registered_users.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+    // Real-time update if another tab changes userLogins or bookings
+    window.addEventListener('storage', function(event) {
+        if (event.key === 'userLogins') {
+            renderUsersTable(document.getElementById('userSearch').value);
+        }
+        if (event.key === 'bookings') {
+            renderBookingsTable();
+        }
+    });
+});
+</script>

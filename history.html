@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/App.css">
+    <link rel="icon" type="image/png" href="./Logo/Zam-Travel.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        .main-footer.enhanced-footer {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar enhanced-navbar">
+       <div class="navbar-logo">
+              <div class="logo-title-motto">
+                <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="logo-img">
+                <span class="logo-title-motto-text">
+                    <span class="navbar-title">Zam-Travel</span>
+                    <span class="navbar-motto">Guiding You Through Zambia</span>
+                </span>
+            </div>
+        </div>
+       <ul class="navbar-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+<li class="nav-item dropdown enhanced-dropdown">
+  <a class="nav-link dropdown-toggle text-white enhanced-dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-bars me-2"></i> Options
+  </a>
+  <ul class="dropdown-menu enhanced-dropdown-menu">
+    <li><a class="dropdown-item enhanced-dropdown-item" href="booking.html"><i class="fas fa-ticket-alt me-2 text-primary"></i>Booking</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="history.html"><i class="fas fa-clipboard-list me-2 text-success"></i>Management</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="transport.html"><i class="fas fa-bus me-2 text-info"></i>Transport</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="accommodations.html"><i class="fas fa-bed me-2 text-accommodation"></i>Accommodations</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="auth.html"><i class="fas fa-sign-out-alt me-2 text-exit"></i>log Out</a> 
+    <li><hr class="dropdown-divider"></li>
+  </ul>
+</li>
+        </ul>
+    </nav>
+    <main>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        .main-footer.enhanced-footer {
+            flex-shrink: 0;
+        }
+    </style>
+        <section class="section history-section">
+            <div class="enhanced-card" style="max-width: 900px; margin: 0 auto;">
+                <h2 style="margin-bottom: 18px;">Booking History</h2>
+                <div class="history-table-container" style="background: transparent; box-shadow: none; padding: 0;">
+                    <table id="historyTable" class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Email</th>
+                                <th>Tour</th>
+                                <th>Date</th>
+                                <th>People</th>
+                                <th>Amount (ZMW)</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Bookings will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer enhanced-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+               <div class="logo-title-motto">
+                <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="logo-img">
+                <span class="logo-title-motto-text">
+                    <span class="navbar-title">Zam-Travel</span>
+                    <span class="navbar-motto">Guiding You Through Zambia</span>
+                </span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms & Conditions</a></li>
+            </ul>
+            <p>&copy; 2024 Zambia Travel Agency. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+    function renderHistoryTable() {
+        const tableBody = document.getElementById('historyTableBody');
+        const history = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
+        if (history.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="9" style="text-align:center;">No bookings yet.</td></tr>';
+        } else {
+            tableBody.innerHTML = '';
+            history.forEach((booking, idx) => {
+                // Simulate status: Approved if payment is Credit Card or PayPal, else Pending
+                let status = (booking.payment === 'Credit Card' || booking.payment === 'PayPal') ? 'Approved' : 'Pending';
+                let statusClass = status === 'Approved' ? 'status-approved' : 'status-pending';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${booking.bookingId}</td>
+                    <td>${booking.email}</td>
+                    <td>${booking.tour}</td>
+                    <td>${booking.date}</td>
+                    <td>${booking.people}</td>
+                    <td>${booking.amount}</td>
+                    <td>${booking.payment}</td>
+                    <td><span class="status-badge ${statusClass}">${status}</span></td>
+                    <td><button class="delete-btn" title="Delete Booking" onclick="deleteBooking(${idx})"><i class="fa fa-trash"></i></button></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+    }
+    function deleteBooking(idx) {
+        let history = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
+        if (confirm('Are you sure you want to delete this booking?')) {
+            history.splice(idx, 1);
+            localStorage.setItem('bookingHistory', JSON.stringify(history));
+            renderHistoryTable();
+        }
+    }
+    document.addEventListener('DOMContentLoaded', renderHistoryTable);
+    </script>
+    <style>
+    .history-table-container { max-width: 900px; margin: 2rem auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 1.5rem; }
+    .history-table { width: 100%; border-collapse: collapse; }
+    .history-table th, .history-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #eee; text-align: left; }
+    .history-table th { background: #f5f5f5; font-weight: bold; }
+    .history-table tr:last-child td { border-bottom: none; }
+    .delete-btn { background: #dc3545; color: #fff; border: none; border-radius: 4px; padding: 0.4rem 0.7rem; cursor: pointer; font-size: 1.1em; display: flex; align-items: center; }
+    .delete-btn:hover { background: #b52a37; }
+    .status-badge {
+        display: inline-block;
+        padding: 0.3em 0.9em;
+        border-radius: 12px;
+        font-size: 0.98em;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: #fff;
+    }
+    .status-approved { background: #27ae60; }
+    .status-pending { background: #f39c12; }
+    </style>
+</body>
+</html> 

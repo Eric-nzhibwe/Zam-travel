@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+     <link rel="icon" type="image/png" href="./Logo/Zam-Travel.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f4f8fb;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        .main-footer.enhanced-footer {
+            flex-shrink: 0;
+        }
+        .profile-container {
+            max-width: 400px;
+            margin: 60px auto 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 2.5rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+        .profile-container h1 {
+            margin-bottom: 1.5rem;
+            color: lightslategray;
+        }
+        .profile-details {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .profile-details p {
+            margin: 0.7em 0;
+            font-size: 1.08em;
+        }
+        .profile-details strong {
+            color: black;
+        }
+        .btn-primary, .btn-logout {
+            display: inline-block;
+            margin: 0.5em 0.2em;
+            padding: 0.7em 1.5em;
+            border: none;
+            border-radius: 5px;
+            background: darkgray;
+            color: black;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover, .btn-logout:hover {
+            background: lightslategray;
+        }
+        .no-user {
+            color: #b00;
+            margin: 2em 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar enhanced-navbar">
+        <div class="navbar-header">
+            <h1 style="text-align: center;">User Profile</h1>
+        </div>
+    </nav>
+    <main>
+        <section class="section profile-section">
+            <div class="enhanced-card" style="max-width: 600px; margin: 0 auto;">
+                
+                <div id="profileDetails" class="profile-details">
+                    <p><strong>Name:</strong> <span id="profileName"></span></p>
+                    <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+                    <p><strong>Contact Number:</strong> <span id="profilenumber"></span></p>
+                </div>
+                <button class="btn-logout enhanced-btn" id="logoutBtn">Logout</button>
+                <a href="index.html" class="btn-primary enhanced-btn">Back to Home</a>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer enhanced-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Zam-Travel. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            document.getElementById('profileName').textContent = currentUser.name || '-';
+            document.getElementById('profileEmail').textContent = currentUser.email || '-';
+            document.getElementById('profilenumber').textContent = currentUser.contactNumber || '-';
+        } else {
+            document.getElementById('profileDetails').innerHTML = '<p class="no-user">No user is currently logged in.</p>';
+            document.getElementById('logoutBtn').style.display = 'none';
+        }
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'auth.html';
+        });
+    });
+    </script>
+</body>
+</html> 

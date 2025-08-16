@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- If using React build, the CSS should be in the build/static/css or public folder. For static HTML, copy App.css to the css/ folder and use: -->
+    <link rel="stylesheet" href="css/App.css">
+    <link rel="icon" type="image/png" href="./Logo/Zam-Travel.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Bootstrap 5 CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./frontend/src/App.js"></script>
+<script>
+  toggle.addEventListener('focus', function() {
+    dropdown.classList.add('show');
+  });
+  toggle.addEventListener('blur', function() {
+    closeTimeout = setTimeout(function() {
+      dropdown.classList.remove('show');
+    }, 180);
+  });
+  // Also keep open if mouse is over menu
+  menu.addEventListener('mouseenter', function() {
+    clearTimeout(closeTimeout);
+    dropdown.classList.add('show');
+  });
+  menu.addEventListener('mouseleave', function() {
+    closeTimeout = setTimeout(function() {
+      dropdown.classList.remove('show');
+    }, 180);
+  });
+  // Optional: Close dropdown on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      dropdown.classList.remove('show');
+    }
+  });
+</script>
+    <style>
+      body {
+        min-height: 100vh;
+        background-color: whitesmoke;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+      }
+
+      .destinations-grid.enhanced-grid {
+        background: rgba(255,255,255,0.85);
+        border-radius: 20px;
+        padding: 32px 18px;
+        box-shadow: 0 4px 24px rgba(60,60,60,0.12);
+        backdrop-filter: blur(2px);
+        transition: box-shadow 0.3s;
+      }
+      .destinations-grid.enhanced-grid:hover {
+        box-shadow: 0 8px 32px rgba(60,60,60,0.18);
+      }
+
+      .section,.cta-section,.resources-section {
+        background: white;
+        border-radius: 10px;
+        padding: 4rem 4rem 4rem 4rem;
+        margin-bottom: 0rem;
+        list-style-type: none;
+      }
+
+      .section h4,.cta-section h4,.resources-section h4 {
+        color: black;
+        margin-bottom: 1rem;
+      }
+    </style>
+    <meta name="description" content="Book unforgettable tours and explore Zambia's top destinations. Secure online booking, featured tours, and easy contact.">
+</head>
+<body>
+</div>
+    <nav class="navbar enhanced-navbar">
+        <div class="navbar-logo">
+            <div class="logo-title-motto">
+                <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="logo-img">
+                <span class="logo-title-motto-text">
+                    <span class="navbar-title">Zam-Travel</span>
+                    <span class="navbar-motto">Guiding You Through Zambia</span>
+                </span>
+            </div>
+        </div>
+        <ul class="navbar-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+<li class="nav-item dropdown enhanced-dropdown">
+  <a class="nav-link dropdown-toggle text-white enhanced-dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-bars me-2"></i> Options
+  </a>
+  <ul class="dropdown-menu enhanced-dropdown-menu">
+    <li><a class="dropdown-item enhanced-dropdown-item" href="booking.html"><i class="fas fa-ticket-alt me-2 text-primary"></i>Booking</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="history.html"><i class="fas fa-clipboard-list me-2 text-success"></i>Management</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="transport.html"><i class="fas fa-bus me-2 text-info"></i>Transport</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="auth.html"><i class="fas fa-sign-out-alt me-2 text-exit"></i>log Out</a>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="accommodations.html"><i class="fas fa-bed me-2 text-accommodations"></i>Accommodations</a></li>
+
+    <li><hr class="dropdown-divider"></li>
+  </ul>
+</li>
+        </ul>
+    </nav>
+    <main>
+        <header class="hero-section enhanced-hero">
+          <div class=""></div>
+            <div class="hero-content">
+                <h1>Welcome to Zam-Travel</h1>
+                <p>Discover, book, and experience the best tours and destinations across Zambia.</p>
+            </header>
+
+            <section class="resources-section enhanced-resources">
+              <h2 style="color: darkgreen;">We offer:</h2><br>
+              <ul>
+                <p style="color: darkgreen; font-size: 20px;"><b>Transportation and booking:</b> Flight reservations for domestic travels,bus and ferring tickets,car rentals and airport transfers.</p><br>
+                <p style="color: darkgreen; font-size: 20px;"><b>Accommodation booking:</b> Hotels,resorts and guesthouses and affordable package deals(flight + hotel).</p><br>
+                <p style="color: darkgreen; font-size: 20px;"><b>Tour and activity plans:</b> Guided tours(safaris and Cultural experiences).</p><br>
+                <p style="color: darkgreen; font-size: 20px;"><b>Customer support:</b> 24/7 helpline during travel,booking changes and cancellations and refund processing.</p>
+              </ul>
+            </section>
+
+        <section id="destinations" class="section destinations-section">
+            <h2>Featured Destinations</h2><br>
+            <hr><br>
+
+            <div class="destinations-grid enhanced-grid">
+                <div class="destination-card enhanced-card">
+                    <div class="card-image-wrapper">
+                        <img src="./images/kafue national park.jpg" class="destination-img" alt="kafue national park">
+                    </div>
+                    <div class="card-content">
+                        <h4>Kafue national park</h4>
+                        <details class="card-details">
+                            <p>The kafue national is located in western Zambia,it covers about 22,400km - making it one of the largest national parks in africa. <br>
+                            Roughly a 4-5 hour drive from Lusaka(depending on which gate you use).It is famous for the big cats,rare antelopes and wild dogs. <br>
+                        include: Game drives(day and night),walking safaris and boat safaris. A 4x4 vehicle is strongly recommended</p><br>
+                    
+                            <a href="transport.html" class="btn-primary btn-lg enhanced-btn">View Transport</a>
+                        </details>
+                    </div>
+                </div>
+                <div class="destination-card enhanced-card">
+                    <div class="card-image-wrapper">
+                        <img src="./images/South Luangwa National park.jpg" class="destination-img" alt="South Luangwa">
+                    </div>
+                    <div class="card-content">
+                        <h4>South Luangwa National Park</h4>
+                        <details class="card-details">
+                            <p>The luangwa national park,one of the most wonderful places that offers breathtaking scenes that leave tourists amazed. <br>
+                            one of the popular eye-catching scenes and activities include: <br>
+                            Natural wonders<br>
+                            Wildlife encounters<br>
+                            Cultural experiences and Photography opportunities.<br>
+
+                            <a href="transport.html" class="btn-primary btn-lg enhanced-btn">View Transport</a>
+                        </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="destination-card enhanced-card">
+                    <div class="card-image-wrapper">
+                        <img src="" class="destination-img" alt="liuwa plain national park">
+                    </div>
+                    <div class="card-content">
+                        <h4>Liuwa Plain National park</h4>
+                        <details class="card-details">
+                            <p></p>
+
+                            <a href="transport.html" class="btn-primary btn-lg enhanced-btn">View Transport</a>
+                        </details>
+                    </div>
+            </div>
+            
+                <div class="destination-card enhanced-card">
+                    <div class="card-image-wrapper">
+                        <img src="./images/estate.jpg" alt="Shiwa Ng'andu Estate">
+                    </div>
+                    <div class="card-content">
+                        <h4>Shiwa Ng'andu Estate</h4>
+                        <details>
+                            <p>Shiwa Ng'andu means <b>"Lake of the royal crocodiles"</b>in the local bemba language. <br>
+                            This estate is owned by Gore Brown's descendants,it also includes working farms,hot springs and nearby wildlife areas. <br>
+                        The manor includes wildlife viewing,guided tours of the manor(full of historical photographs and books),fishing and hicking.</p>
+                        <p>Its route is accessible by road(aboyt 55km,but some parts are rough).A 4x4 vehicle is recommended,especially in rain season.</p>
+                        </details>
+                    </div>
+                </div>
+
+                 <div class="destination-card enhanced-card">
+                    <div class="card-image-wrapper">
+                        <img src="./images/House.jpg" alt="chilenje house 394">
+                    </div>
+                    <div class="card-content">
+                        <h4>Chilenje House 394(Lusaka)</h4>
+                        <details>
+                            <p></p>
+                        </details>
+                    </div>
+                </div>
+
+                 <div class="destination-card enhanced-card">
+                    <div class="card-image-wrapper">
+                        <img src="./" alt="moto moto museum">
+                    </div>
+                    <div class="card-content">
+                        <h4>Moto moto museum</h4>
+                        <details>
+                            <p></p>
+                        </details>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        <section class="cta-section enhanced-cta">
+            <h2>Have you made your decision yet?</h2>
+            <p>Then book your next trip with us and experience Zambia like never before!</p>
+            <a href="transport.html" class="btn-primary btn-lg enhanced-btn">Book Now</a>
+        </section>
+
+<div class="row g-4 mb-4">
+<div class="row g-4 mb-5 enhanced-faq-tips-row">
+  <div class="col-md-6">
+    <div class="card shadow-lg h-100 border-0 enhanced-faq-card">
+      <div class="card-body">
+        <h3 class="card-title mb-4 text-primary d-flex align-items-center"><i class="fas fa-question-circle me-2 fa-lg"></i>FAQs</h3>
+        <ul class="list-group faq-list enhanced-list-group">
+          <li class="list-group-item enhanced-list-item"><i class="fas fa-ticket-alt text-info me-2"></i><b>How do I book a ticket?</b> <span class="text-muted">Use the booking form above to select your transport and details.</span></li>
+          <li class="list-group-item enhanced-list-item"><i class="fas fa-undo text-warning me-2"></i><b>Can I cancel my booking?</b> <span class="text-muted">Yes, contact our support for cancellations and refunds.</span></li>
+          <li class="list-group-item enhanced-list-item"><i class="fas fa-users text-success me-2"></i><b>Are there discounts for groups?</b> <span class="text-muted">Yes, group discounts are available for 5 or more people.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-lg h-100 border-0 enhanced-tips-card">
+      <div class="card-body">
+        <h3 class="card-title mb-4 text-success d-flex align-items-center"><i class="fas fa-lightbulb me-2 fa-lg"></i>Travel Tips</h3>
+        <ul class="list-group tips-list enhanced-list-group">
+          <li class="list-group-item enhanced-list-item"><i class="fas fa-clock text-primary me-2"></i>Arrive at the departure point at least 30 minutes early.</li>
+          <li class="list-group-item enhanced-list-item"><i class="fas fa-id-card text-info me-2"></i>Keep your ticket and ID handy for verification.</li>
+          <li class="list-group-item enhanced-list-item"><i class="fas fa-suitcase-rolling text-warning me-2"></i>Pack light and secure your belongings.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+    <footer class="main-footer enhanced-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-title-motto">
+                <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="logo-img">
+                <span class="logo-title-motto-text">
+                    <span class="navbar-title">Zam-Travel</span>
+                    <span class="navbar-motto">Guiding You Through Zambia</span>
+                </span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms & Conditions</a></li>
+            </ul>
+            <p>&copy; 2024 Zambia Travel Agency. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

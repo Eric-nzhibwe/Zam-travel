@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transport</title>
+    <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/App.css">
+    <link rel="icon" type="image/png" href="./Logo/Zam-Travel.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+     <nav class="navbar enhanced-navbar">
+        <div class="navbar-logo">
+            <div class="logo-title-motto">
+                <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="logo-img">
+                <span class="logo-title-motto-text">
+                    <span class="navbar-title">Zam-Travel</span>
+                    <span class="navbar-motto">Guiding You Through Zambia</span>
+                </span>
+            </div>
+        </div>
+       <ul class="navbar-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+<li class="nav-item dropdown enhanced-dropdown">
+  <a class="nav-link dropdown-toggle text-white enhanced-dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-bars me-2"></i> Options
+  </a>
+  <ul class="dropdown-menu enhanced-dropdown-menu">
+    <li><a class="dropdown-item enhanced-dropdown-item" href="booking.html"><i class="fas fa-ticket-alt me-2 text-primary"></i>Booking</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="history.html"><i class="fas fa-clipboard-list me-2 text-success"></i>Management</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="transport.html"><i class="fas fa-bus me-2 text-info"></i>Transport</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="accommodations.html"><i class="fas fa-bed me-2 text-accommodation"></i>Accommodations</a></li>
+    <li><a class="dropdown-item enhanced-dropdown-item" href="auth.html"><i class="fas fa-sign-out-alt me-2 text-exit"></i>log Out</a> 
+    <li><hr class="dropdown-divider"></li>
+  </ul>
+</li>
+        </ul>
+    </nav>
+    <section class="hero-section transport-hero">
+        <div class="hero-content">
+            <h1>Transport Options</h1>
+            <p class="hero-subtitle">Choose your preferred way to travel and explore Zambia with comfort and style.</p>
+        </div>
+    </section>
+    <main>
+        <section class="section transport-section">
+            <div class="transport-container enhanced-card">
+                <h2>Available Transport Options</h2>
+                <div class="transport-list">
+                    <div class="transport-item card">
+                        <div class="transport-img-wrapper">
+                            <img src="./images/bus.jpg" alt="Bus" class="transport-img">
+                        </div>
+                        <div class="transport-info">
+                            <h3><i class="fas fa-bus"></i> Bus</h3>
+                            <p>Comfortable and affordable UBZ bus services to major destinations across Zambia,giving you an enjoyable experience along the way.</p>
+                            <a href="booking.html" class="btn-primary btn-lg enhanced-btn">Book now</a>
+                        </div>
+                    </div>
+                    <div class="transport-item card">
+                        <div class="transport-img-wrapper">
+                            <img src="./" alt="Boat" class="transport-img">
+                        </div>
+                        <div class="transport-info">
+                            <h3><i class="fas fa-ship"></i> Boat</h3>
+                            <p>Enjoy scenic boat rides on Lake Kariba and other beautiful water bodies.</p><br><br>
+                            <a href="booking.html" class="btn-primary btn-lg enhanced-btn">Book now</a>
+                        </div>
+                    </div>
+                    <div class="transport-item card">
+                        <div class="transport-img-wrapper">
+                            <img src="./images/airplane.jpg" alt="Plane" class="transport-img">
+                        </div>
+                        <div class="transport-info">
+                            <h3><i class="fas fa-plane"></i> Airplane</h3>
+                            <p>Travel in style with Zambia Airways and other plane services.Enjoy scenic views as you travel above zambia.</p><br>
+                            <a href="booking.html" class="btn-primary btn-lg enhanced-btn">Book now</a>
+                        </div>
+                    </div>
+                    <div class="transport-item card">
+                        <div class="transport-img-wrapper">
+                            <img src="./images/Rental cars.jpg" alt="Rental Cars" class="transport-img">
+                        </div>
+                        <div class="transport-info">
+                            <h3><i class="fas fa-car"></i>Rental Cars</h3>
+                            <p>Flexible car rental options for your personalized travel experience.</p><br><br>
+                            <a href="booking.html" class="btn-primary btn-lg enhanced-btn">Book now</a>
+                        </div>
+                    </div>
+
+    <style>
+    .hero-section.transport-hero {
+        padding: 32px 0 18px 0;
+        text-align: center;
+    }
+    .hero-section .hero-content h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: black;
+        margin-bottom: 0.5rem;
+    }
+    .hero-section .hero-subtitle {
+        font-size: 1.2rem;
+        color: #444;
+        margin-bottom: 0;
+    }
+    .transport-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+    .transport-item.card {
+        background: #fff;
+        border-radius: 16px;
+        border: 2px solid lightgray;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+        overflow: hidden;
+        width: 270px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: box-shadow 0.2s, transform 0.2s;
+        cursor: pointer;
+    }
+    .transport-item.card:hover {
+        box-shadow: 0 10px 32px rgba(0,0,0,0.16);
+        transform: translateY(-6px) scale(1.03);
+    }
+    .transport-img-wrapper {
+        width: 100%;
+        height: 140px;
+        overflow: hidden;
+        background: #f0f0f0;
+    }
+    .transport-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s;
+    }
+   
+    .transport-info {
+        padding: 18px 16px 14px 16px;
+        text-align: left;
+        width: 100%;
+    }
+    .transport-info h3 {
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: black;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .transport-info p {
+        color: #444;
+        font-size: 1.01rem;
+        margin-bottom: 0;
+    }
+
+ 
+    @media (max-width: 900px) {
+        .transport-list {
+            flex-direction: column;
+            align-items: center;
+        }
+        .transport-item.card {
+            width: 95vw;
+            max-width: 350px;
+        }
+    }
+    </style>
+                <h3>Timetables & Schedules</h3>
+                <table class="transport-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Departure</th>
+                            <th>Arrival</th>
+                            <th>Time</th>
+                            <th>Price (ZMW)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bus</td>
+                            <td>Lusaka</td>
+                            <td>victoria Falls/South Luangwa national park</td>
+                            <td>08-13 Hrs and 08-19</td>
+                            <td>300</td>
+                        </tr>
+                        <tr>
+                            <td>Airplane</td>
+                            <td>Lusaka</td>
+                            <td>Nachikufu caves/Blue lagoon national park</td>
+                            <td>2Hrs 30min</td>
+                            <td>400</td>
+                        </tr>
+                        <tr>
+                            <td>Boat</td>
+                            <td>Lusaka</td>
+                            <td>Lake kariba/The royal livingstone express</td>
+                            <td>24 Hours</td>
+                            <td>250</td>
+                        </tr>
+                        <tr>
+                            <td>Car</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Our Transport Partners</h3>
+                <div class="partners-list">
+                    <img src="Logo/Zam-Travel.png" alt="Partner 1" class="partner-logo">
+                    <!-- Add more partner logos as needed -->
+                </div>
+                  
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer enhanced-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-title-motto">
+                <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="logo-img">
+                <span class="logo-title-motto-text">
+                    <span class="navbar-title">Zam-Travel</span>
+                    <span class="navbar-motto">Guiding You Through Zambia</span>
+                </span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms & Conditions</a></li>
+            </ul>
+            <p>&copy; 2024 Zambia Travel Agency. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="js/transport.js"></script>
+
+    <script>
+const bookingForm = document.querySelector('.transport-booking-form');
+const receiptModal = document.getElementById('receiptModal');
+const receiptContent = document.getElementById('receiptContent');
+const closeReceiptBtn = document.getElementById('closeReceiptBtn');
+const printReceiptBtn = document.getElementById('printReceiptBtn');
+
+function showReceiptModal(html) {
+    receiptContent.innerHTML = html;
+    receiptModal.style.display = 'flex';
+    setTimeout(() => { receiptModal.focus(); }, 50);
+}
+function closeReceipt() {
+    receiptModal.style.display = 'none';
+}
+if (closeReceiptBtn) closeReceiptBtn.addEventListener('click', closeReceipt);
+if (printReceiptBtn) printReceiptBtn.addEventListener('click', function() {
+    const content = receiptContent.innerHTML;
+    const printWindow = window.open('', '', 'width=600,height=600');
+    printWindow.document.write(content);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+});
+if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const type = document.getElementById('transportType').value;
+        const from = document.getElementById('from').value;
+        const to = document.getElementById('to').value;
+        const date = document.getElementById('date').value;
+        const people = document.getElementById('people').value;
+        if (!type || !from || !to || !date || !people) {
+            alert('Please fill in all fields.');
+            return;
+        }
+        const bookingId = 'TR' + Date.now();
+        const receipt = `
+            <h3>Transport Booking Receipt</h3>
+            <div><strong>Booking ID:</strong> ${bookingId}</div>
+            <div><strong>Type:</strong> ${type}</div>
+            <div><strong>From:</strong> ${from}</div>
+            <div><strong>To:</strong> ${to}</div>
+            <div><strong>Date:</strong> ${date}</div>
+            <div><strong>People:</strong> ${people}</div>
+        `;
+        showReceiptModal(receipt);
+        bookingForm.reset();
+    });
+}
+</script>
+</body>
+</html>
