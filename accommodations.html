@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodations</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/App.css">
+    <link rel="icon" type="image/png" href="./Logo/Zam-Travel.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+      body {
+        background: linear-gradient(white, whitesmoke);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+      .accommodation-section {
+        background: rgba(255,255,255,0.92);
+        border-radius: 1.5rem;
+        padding: 2.5rem 1.5rem;
+        box-shadow: 0 4px 24px rgba(60,60,60,0.10);
+        max-width: 1100px;
+        margin: 2rem auto;
+      }
+      .accommodation-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .accommodation-card {
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        transition: transform 0.2s, box-shadow 0.2s;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .accommodation-card:hover {
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+      }
+      .accommodation-img {
+        width: 100%;
+        max-width: 260px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 0.8rem;
+        margin-bottom: 1rem;
+      }
+      .accommodation-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 0.5rem;
+      }
+      .accommodation-details {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .accommodation-btn {
+        background: lightslategrey;
+        color: black;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+        transition: background 0.2s;
+        text-decoration: none;
+      }
+      .accommodation-btn:hover {
+        background: lightgray;
+      }
+
+      /* FOOTER */
+    .main-footer {
+      background: #343a40;
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar enhanced-navbar">
+        <div class="navbar-logo">
+            <div class="logo-title-motto">
+                <img src="./Logo/Zam-Travel.png" alt="Zambia Travel Logo" class="logo-img">
+                <span class="logo-title-motto-text">
+                    <span class="navbar-title">Zam-Travel</span>
+                    <span class="navbar-motto">Guiding You Through Zambia</span>
+                </span>
+            </div>
+        </div>
+        <ul class="navbar-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li class="nav-item dropdown enhanced-dropdown">
+              <a class="nav-link dropdown-toggle text-white enhanced-dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Options
+              </a>
+              <ul class="dropdown-menu enhanced-dropdown-menu">
+                <li><a class="dropdown-item enhanced-dropdown-item" href="booking.html"><i class="fas fa-ticket-alt me-2 text-primary"></i>Booking</a></li>
+                <li><a class="dropdown-item enhanced-dropdown-item" href="history.html"><i class="fas fa-clipboard-list me-2 text-success"></i>Management</a></li>
+                <li><a class="dropdown-item enhanced-dropdown-item" href="transport.html"><i class="fas fa-bus me-2 text-info"></i>Transport</a></li>
+                <li><a class="dropdown-item enhanced-dropdown-item" href="auth.html"><i class="fas fa-sign-out-alt me-2 text-exit"></i>log Out</a>
+                <li><a class="dropdown-item enhanced-dropdown-item" href="accommodations.html"><i class="fas fa-bed me-2 text-accommodations"></i>Accommodations</a></li>
+            
+                <li><hr class="dropdown-divider"></li>
+              </ul>
+            <li><a href="contact.html">Contact Us</a></li>
+</li>
+        </ul>
+    </nav>
+    <main>
+        <section class="accommodation-section">
+            <h1 style="text-align:center; color: black">Top Accommodations in Zambia</h1>
+            <p style="text-align:center; color:#555;">Find the best places to stay for your adventure, from luxury lodges to budget-friendly guesthouses.</p>
+            <p style="text-align: center; color: black;">Accommodations payments can be made upon arrival.</p>
+
+            <div class="accommodation-grid">
+                <div class="accommodation-card">
+                    <img src="./images/Mukambi.jpg" alt="mukambi lodge" class="accommodation-img">
+                    <div class="accommodation-title">Mukambi safari lodge</div>
+                    <div class="accommodation-details">Offers chalet accommodation,game drives,and walking safaris.Located in the kafue river area,with scenic views and wildlife spotting opportunities. Price ranges from K700-K750 per night,for a standard room.</div>
+                    <a href="transport.html" class="accommodation-btn">Book Now</a>
+                </div>
+                <div class="accommodation-card">
+                    <img src="./images/Bangweulu.jpg" alt="Bangweulu lodge" class="accommodation-img">
+                    <div class="accommodation-title">Bangweulu bay lodge</div>
+                    <div class="accommodation-details">This lodge features only three chalets with lake views,it offers a unique beach like setting in one of Zambia's beach-like lakeshore areas.Prices around K1,395(per person) and K2,326 per night.</div>
+                    <a href="transport.html" class="accommodation-btn">Book Now</a>
+                </div>
+                <div class="accommodation-card">
+                    <img src="./images/mopani.jpg" alt="mopani lodge" class="accommodation-img">
+                    <div class="accommodation-title">Mopani safari lodge</div>
+                    <div class="accommodation-details">A 2 bedroom cabin with private parking,pool, and breakfast options.Prices around K500 per night</div>
+                    <a href="transport.html" class="accommodation-btn">Book Now</a>
+                </div>
+                <div class="accommodation-card">
+                    <img src="" alt="Urban Comfort Hotel" class="accommodation-img">
+                    <div class="accommodation-title">Urban Comfort Hotel</div>
+                    <div class="accommodation-details">Modern amenities, central location in Lusaka, and excellent service for business and leisure travelers.</div><br><br><br>
+                    <a href="transport.html" class="accommodation-btn">Book Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer enhanced-footer">
+        <div class="footer-content">
+                <p>Copyright &copy; 2024 Zambia Travel Agency-All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
