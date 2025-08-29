@@ -1,0 +1,277 @@
+.enhanced-dropdown-menu {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.enhanced-dropdown:hover .enhanced-dropdown-menu,
+.enhanced-dropdown:focus-within .enhanced-dropdown-menu {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+/* Dropdown Customization */
+.enhanced-dropdown-menu {
+  border-image-slice: 1;
+  box-shadow: 0 8px 32px rgba(13,110,253,0.10), 0 2px 8px rgba(25,135,84,0.08);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(6px);
+  animation: dropdownReveal 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+  margin-top: 0.5rem;
+  padding: 0.75rem 0.25rem;
+}
+@keyframes dropdownReveal {
+  0% { opacity: 0; transform: translateY(-12px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.enhanced-dropdown-item {
+  font-size: 1.08rem;
+  background: linear-gradient(90deg, #e3f0ff 0%, #eafff3 100%);
+  box-shadow: 0 1px 4px rgba(13,110,253,0.04);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+.enhanced-dropdown-item:hover, .enhanced-dropdown-item:focus {
+  color: black;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.12);
+}
+.enhanced-dropdown-toggle {
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.10);
+  color: black !important;
+  font-weight: 700;
+  padding: 0.6rem 1.5rem;
+  letter-spacing: 0.7px;
+  transition: background 0.2s, box-shadow 0.2s, border 0.2s;
+}
+.enhanced-dropdown-toggle:hover, .enhanced-dropdown-toggle:focus {
+  color: black !important;
+  box-shadow: 0 4px 16px rgba(25,135,84,0.12);
+  border-color: #198754;
+}
+/* Enhanced Dropdown Styles */
+.enhanced-dropdown {
+  position: relative;
+}
+
+.enhanced-dropdown-toggle {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1.2rem;
+  color: black !important;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.enhanced-dropdown-toggle:hover, .enhanced-dropdown-toggle:focus {
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.enhanced-dropdown-menu {
+  border-radius: 1rem;
+  background: linear-gradient(lightslategrey, lightgrey);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  min-width: 200px;
+}
+.enhanced-dropdown-item {
+  font-size: 1.05rem;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+}
+.enhanced-dropdown-item:hover, .enhanced-dropdown-item:focus {
+  background: #e3f0ff;
+  color: #0d6efd;
+}
+/* Modern enhancements for extra visual appeal */
+body {
+  background: linear-gradient(120deg, #e3f2fd 0%, #f8f9fa 100%);
+}
+
+.enhanced-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  border: 1px solid lightgray;
+}
+
+.btn-primary.enhanced-btn:hover {
+  box-shadow: 0 0 12px #007bff55;
+  background: #0056b3;
+}
+
+.faq-list .list-group-item:hover,
+.tips-list .list-group-item:hover {
+  background: #e3f2fd;
+  color: lightgray;
+  transition: background 0.2s, color 0.2s;
+}
+
+.enhanced-navbar {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.main-footer {
+  background: #f8f9fa;
+  border-top: 2px solid #e3f2fd;
+}
+/* App.css - Custom styles for Zam-Travel React app */
+
+body, html, #root, .App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: white;
+}
+
+.enhanced-navbar {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.navbar-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: black;
+}
+
+.navbar-motto {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.hero-section {
+  background-color: whitesmoke;
+  padding: 2.5rem 1rem 2rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-section h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: black;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.destinations-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: black;
+}
+
+.enhanced-card {
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: transform 0.2s;
+  background: #fff;
+}
+
+.enhanced-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+
+.card-img-top.destination-img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  object-fit: cover;
+  height: 180px;
+  width: 100%;
+}
+
+.card-title {
+  color: black;
+  font-weight: 600;
+}
+
+.btn.enhanced-btn {
+  background: lightgray;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  transition: background 0.2s;
+}
+
+.btn.enhanced-btn:hover {
+  background: darkgray;
+}
+
+.cta-section {
+  background: whitesmoke;
+  border-radius: 1rem;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.faq-list, .tips-list {
+  padding-left: 0;
+}
+
+.faq-list .list-group-item, .tips-list .list-group-item {
+  border: none;
+  background: #fff;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.tips-section {
+  background: #f1f8e9;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+}
+
+.main-footer {
+  background: linear-gradient(lightgrey, lightslategrey);
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-logo .logo-img {
+  height: 32px;
+}
+
+.footer-links a {
+  color: black;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 1.5rem 0.5rem 1.2rem 0.5rem;
+  }
+  .enhanced-card {
+    margin-bottom: 1.5rem;
+  }
+  .footer-content {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .footer-logo {
+    margin-bottom: 1rem !important;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar-nav .nav-item {
+    margin-bottom: 0.5rem;
+  }
+}
