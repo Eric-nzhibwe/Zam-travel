@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="./logo/Zam.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .h1 {
+            justify-content: center;
+            font-size: 15px;
+            align-items: center;
+            text-align: center;
+            color: black;
+        }
+
+        .enhacned-card {
+            border: 1px solid lightblue;
+            border-radius: 15px;
+            padding: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar enhanced-navbar">
+        <div class="navbar-header">
+            <h1>Contact Us:</h1>
+        </div>
+    </nav>
+    <main>
+        <section class="section contact-section">
+            <div class="enhanced-card" style="max-width: 500px; margin: 0 auto;">
+                <h2 style="margin-bottom: 18px;">Contact Us</h2>
+                <div class="contact-info" style="margin-bottom: 18px;">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@zamtravel.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+260 771 493 387</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lusaka, Zambia</span>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="input-group">
+                    <input type="text" name="name" placeholder="Your Name" required><br><br>
+                    </div>
+
+                    <div class="input-group">
+                    <input type="email" name="email" placeholder="Your Email" required><br><br>
+                    </div>
+
+                    <div class="input-group">
+                    <textarea name="message" placeholder="Your Message" required></textarea><br><br>
+                    <button type="submit" class="btn-secondary enhanced-btn">Send Message</button>
+                </form>
+                <div id="contactConfirmation" style="display:none;margin-top:24px;text-align:center;"></div>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer enhanced-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Zambia Travel Agency. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.getElementById('contactForm').onsubmit = function(e) {
+        e.preventDefault();
+        document.getElementById('contactConfirmation').style.display = 'block';
+        document.getElementById('contactConfirmation').innerHTML = '<div class="notification success">Thank you for contacting us! We will reply soon.</div>';
+        this.reset();
+    };
+    </script>
+</body>
+</html> 

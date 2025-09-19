@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Tour</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/App.css">
+    <link rel="icon" type="image/png" href="./logo/Zam.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
+
+    <style>
+        .navbar, .enhanced-navbar {
+            padding: 0.5rem 2rem;
+            background: linear-gradient(to right, lightgray, whitesmoke);
+            height: 75px;
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-title-motto {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: 50px;
+            object-fit: contain;
+        }
+
+        .logo-title-motto-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: black;
+        }
+
+        .navbar-motto {
+            font-size: 0.8rem;
+            color: black;
+            align-self: flex-end;
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+            margin-bottom: 0;
+            padding: 0;
+            align-items: center;
+            background-color: whitesmoke;
+        }
+
+        .navbar-links li {
+            position: relative;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #000;
+            padding: 0.5rem 1rem;
+            display: block;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .navbar-links a.active {
+            color: #007bff;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            z-index: 1000;
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1rem;
+            color: #333;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background-color: lightgray;
+            color: #fff;
+        }
+
+        .dropdown-item i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #fff;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 1rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .navbar-links li {
+                margin: 0.5rem 0;
+            }
+
+            .navbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .logo-img {
+        height: 50px;
+        width: 50px;
+        object-fit: contain;
+      }
+      .logo-title-motto-text {
+        display: flex;
+        flex-direction: column;
+      }
+      .navbar-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: black;
+      }
+      .navbar-motto {
+        font-size: 0.8rem;
+        color: black;
+        align-self: flex-end;
+      }
+
+            .navbar-links {
+                list-style: none;
+                display: flex;
+                text-align: left;
+                gap: 1rem;
+                margin-left: auto;
+                margin-bottom: 0;
+                background: whitesmoke;
+            }
+            .navbar-links li {
+                position: relative;
+            }
+            .navbar-links a {
+                text-decoration: none;
+                background: whitesmoke;
+                color: #000;
+                padding: 0.5rem 1rem;
+                display: block;
+                transition: background 0.2s, color 0.2s;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border: none;
+                background: #f9f9f9;
+            }
+
+            .dropdown-toggle::after {
+                display: none;
+            }
+        }
+
+        .booking-container {
+            border: 2px solid lightgray;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .input-group {
+            border-radius: 50px;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: white;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .booking-form label {
+            text-align: left;
+        }
+
+        .booking-form input,
+        .booking-form select {
+            width: 100%;
+            max-width: 100%;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            text-align:  center;
+            min-height: 1.5em;
+        }
+
+        .receipt-modal {
+            display: none; /* toggled to flex in JS */
+            position: fixed;
+            inset: 0; /* shorthand for top/left/right/bottom 0 */
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.45);
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            flex-direction: column;
+            padding: 1rem;
+            backdrop-filter: blur(2px);
+            animation: fadeIn 200ms ease-out;
+        }
+
+        .receipt-content {
+            background: #ffffff;
+            padding: 1.25rem 1.25rem 1rem;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 560px; /* desktop width */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 0.75rem;
+            color: #2b2b2b;
+            overflow: auto;
+            max-height: 78vh;
+            animation: slideUp 220ms ease-out;
+        }
+
+        /* Optional typography helpers inside receipt */
+        .receipt-content h2,
+        .receipt-content h3,
+        .receipt-content h4 {
+            margin: 0 0 0.5rem 0;
+        }
+
+        .receipt-content .section-divider {
+            border-top: 1px solid #e9ecef;
+            margin: 0.75rem 0 1rem;
+        }
+
+        .receipt-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .receipt-actions .btn-primary,
+        .receipt-actions .btn-secondary {
+            min-width: 120px;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 576px) {
+            .receipt-content {
+                padding: 1rem 0.875rem;
+                border-radius: 14px;
+                max-width: 95vw; /* use most of the viewport on mobile */
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(10px); opacity: 0; }
+            to   { transform: translateY(0); opacity: 1; }
+        }
+
+        .booking-history-container {
+            overflow-x: auto;
+            margin-top: 16px;
+        }
+
+        .booking-history-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .booking-history-table th,
+        .booking-history-table td {
+            border: 1px solid #ddd;
+            padding: 12px 16px;
+            text-align: left;
+            transition: background-color 0.2s ease;
+        }
+
+        .booking-history-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .booking-history-table tr:hover td {
+            background-color: #f8f9fa;
+            box-shadow: #a5a5a5;
+            transition-duration: 1.0s;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            transform: scale(1.05);
+        }
+
+        .badge {
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .booking-container {
+                max-width: 95%;
+                padding: 1rem;
+            }
+
+            .booking-history-table {
+                font-size: 0.85rem;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+
+        .main-footer,.enhanced-footer {
+            background: black;
+            color: white;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            border-radius: none;
+            height: 99px;
+            min-height: 99px;
+        }
+
+        .footer-content,.enhanced {
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg d-flex align-items-center">
+        <div class="container-fluid p-0">
+          <div class="navbar-logo d-flex align-items-center">
+            <img src="./logo/Zam.png" alt="ZamTravel Logo" class="logo-img">
+            <div class="logo-title-motto-text">
+              <span class="navbar-title">Zam-Travel</span>
+              <span class="navbar-motto">Guiding You Through Zambia</span>
+            </div>
+          </div>
+          <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-links navbar-nav ms-auto">
+              <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+              <li class="nav-item dropdown enhanced-dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Options
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="booking.html"><i class="fas fa-ticket-alt me-2"></i>Booking</a></li>
+                  <li><a class="dropdown-item" href="history.html"><i class="fas fa-clipboard-list me-2"></i>Management</a></li>
+                  <li><a class="dropdown-item" href="transport.html"><i class="fas fa-bus me-2"></i>Transport</a></li>
+                  <li><a class="dropdown-item" href="accommodations.html"><i class="fas fa-bed me-2"></i>Accommodations</a></li>
+                  <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>User profile</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="auth.html"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav><br><br>
+    
+
+    <main>
+        <section class="section booking-section">
+            <div class="booking-container enhanced-card">
+                <h2 style="margin-bottom: 18px;">Book Your Tour</h2>
+                <form class="booking-form" id="bookingForm">
+                    <label for="customerName">Full Name</label>
+                    <div class="input-group">
+                        <input type="text" id="customerName" name="customerName" placeholder="Enter your full name" required>
+                    </div>
+
+                    <label for="email">Your Email</label>
+                    <div class="input-group">
+                        <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                    </div>
+
+                    <label for="tour">Choose Destination</label>
+                    <select id="tour" name="tour" required>
+                        <option value="">--Select- destination-</option>
+                        <option value="Kafue national park">Kafue national park</option>
+                        <option value="South luangwa national park">South luangwa national park</option>
+                        <option value="Liuwa plain">Liuwa plain</option>
+                        <option value="Bangweulu wetlands">Bangweulu wetlands</option>
+                        <option value="Shiwa ng'andu estate">Shiwa ng'andu estate</option>
+                        <option value="Moto moto museum">Moto moto museum</option>
+                        <option value="kalimba">kalimba reptile park</option>
+                        <option value="samfya">Samfya beach</option>
+                        <option value="park">Sioma ngwezi national park</option>
+                    </select>
+
+                    <label for="people">Number of People</label>
+                    <div class="input-group">
+                        <input type="number" id="people" name="people" min="1" value="1" required>
+                    </div>
+
+                    <label for="amount">Amount (ZMW)</label>
+                    <select id="amount" name="amount" class="dropdown" required>
+                        <option value="prices">--Select amount--</option>
+                        <option value="amount">K500.00 - kafue</option>
+                        <option value="amount">K650.00 - south luangwa</option>
+                        <option value="amount">K345.00 - western</option>
+                        <option value="amount">K800.00 - north western</option>
+                        <option value="amount">K530.00 - muchinga</option>
+                        <option value="amount">K500.00 - mbala</option>
+                        <option value="amount">K320.00 - lusaka</option>
+                        <option value="amount">K570.00 - luapula</option>
+                        <option value="amount">K700 - western</option>
+                    </select>
+
+                    <label for="transportType" style="text-align: left;">Transport Type</label>
+                    <select id="transportType" name="transportType" required>
+                        <option value="transport">--Select trnasport type--</option>
+                        <option value="transport">K300 - Bus</option>
+                        <option value="transport">K400 - Plane</option>
+                        <option value="transport">K540 - Rental car</option>
+                    </select>
+
+                    <label for="from">From</label>
+                    <div class="input-group">
+                        <input type="text" id="from" name="from" placeholder="Departure location" required>
+                    </div>
+
+                    <label for="to">To</label>
+                    <div class="input-group">
+                        <input type="text" id="to" name="to" placeholder="Destination" required>
+                    </div>
+
+                    <label for="date">Date</label>
+                    <div class="input-group">
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <label for="payment">Payment Method</label>
+                    <select id="payment" name="payment" required>
+                        <option value="">--Select payment method--</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Mobile Money">Mobile Money</option>
+                    </select>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary enhanced-btn">Submit</button>
+                        <button type="reset" class="btn-secondary enhanced-btn">Reset</button>
+                    </div>
+                    <div id="formMessage" class="form-message" aria-live="polite"></div>
+                </form>
+
+                <div class="receipt-modal" id="receiptModal" tabindex="-1" aria-modal="true" role="dialog">
+                    <div class="receipt-content" id="receiptContent"></div>
+                    <div class="receipt-actions">
+                        <button id="closeReceiptBtn" class="btn-secondary">Close</button>
+                        <button id="printReceiptBtn" class="btn-primary">Print</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main><br><br>
+
+    <footer class="main-footer enhanced-footer bg-dark text-white mt-auto">
+        <div class="footer-content enhanced py-3">
+          <p class="mb-0">Copyright &copy; 2025 Zam-Travel. All rights reserved.</p>
+        </div>
+      </footer>
+
+    <!-- Booking API to sync with Admin Dashboard (localStorage-based) -->
+    <script src="js/booking-api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function cancelBooking(bookingId) {
+            const bookings = JSON.parse(localStorage.getItem('bookingHistory')) || [];
+            // Support both legacy "bookingId" and new "id" keys
+            const bookingIndex = bookings.findIndex(b => (b.bookingId || b.id) === bookingId);
+            
+            if (bookingIndex === -1) {
+                alert('Booking not found!');
+                return;
+            }
+
+            const booking = bookings[bookingIndex];
+            const travelDate = new Date(booking.date);
+            const today = new Date();
+            const diffTime = travelDate.getTime() - today.getTime();
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays < 2) {
+                alert('Cancellations must be made at least 48 hours before the travel date.');
+                return;
+            }
+
+            if (confirm('Are you sure you want to cancel this booking? A cancellation fee may apply.')) {
+                bookings.splice(bookingIndex, 1);
+                localStorage.setItem('bookingHistory', JSON.stringify(bookings));
+                
+                if (typeof emailjs !== 'undefined' && emailjs.send) {
+                    const cancellationEmail = `
+                        <div style="font-family: Arial, sans-serif; padding: 20px;">
+                            <h2>Booking Cancellation Confirmation</h2>
+                            <p>Your booking with ID: ${bookingId} has been cancelled.</p>
+                            <p>Details of cancelled booking:</p>
+                            <ul>
+                                <li>Tour: ${booking.tour}</li>
+                                <li>Date: ${booking.date}</li>
+                                <li>Number of People: ${booking.people}</li>
+                            </ul>
+                            <p>If this cancellation was made in error, please contact us immediately.</p>
+                            <p>Thank you for choosing Zam-Travel.</p>
+                        </div>
+                    `;
+
+                    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                        to_email: booking.email,
+                        message: cancellationEmail,
+                        booking_id: bookingId
+                    });
+                }
+
+                alert('Booking cancelled successfully!');
+                loadBookingHistory();
+            }
+        }
+
+        // EmailJS init
+        if (typeof emailjs !== 'undefined' && emailjs.init) {
+            emailjs.init('YOUR_USER_ID');
+        }
+
+        // Generate a unique booking ID
+        function generateBookingId() {
+            return 'BK' + Date.now().toString().slice(-6);
+        }
+
+        // Save booking to history
+        function saveBookingToHistory(bookingData) {
+            // Get existing bookings from localStorage or initialize empty array
+            const bookings = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
+            
+            // Add new booking
+            bookings.push(bookingData);
+            
+            // Save back to localStorage
+            localStorage.setItem('bookingHistory', JSON.stringify(bookings));
+            
+            // Redirect to history page
+            window.location.href = 'history.html';
+        }
+
+        // On booking.html there is no history table to render; define a no-op to avoid errors
+        function loadBookingHistory() {
+            // Intentionally empty; actual rendering happens on history.html
+        }
+
+        // Note: Removed custom hamburger toggle as Bootstrap handles the navbar collapse natively.
+        // If custom hamburger is needed, add a button with class 'hamburger' to HTML and adjust.
+
+        // Receipt modal helpers and bindings
+        const receiptModal = document.getElementById('receiptModal');
+        const receiptContent = document.getElementById('receiptContent');
+        const closeReceiptBtn = document.getElementById('closeReceiptBtn');
+        const printReceiptBtn = document.getElementById('printReceiptBtn');
+
+        function showReceiptModal(html) {
+            if (receiptContent) receiptContent.innerHTML = html || '';
+            if (receiptModal) receiptModal.style.display = 'flex';
+        }
+
+        function closeReceipt() {
+            if (receiptModal) receiptModal.style.display = 'none';
+            if (receiptContent) receiptContent.innerHTML = '';
+        }
+
+        if (closeReceiptBtn) closeReceiptBtn.addEventListener('click', closeReceipt);
+        if (printReceiptBtn) printReceiptBtn.addEventListener('click', function () {
+            window.print();
+        });
+
+        if (receiptModal) {
+            // Close when clicking outside content
+            receiptModal.addEventListener('click', function (e) {
+                if (e.target === receiptModal) closeReceipt();
+            });
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && receiptModal && receiptModal.style.display === 'flex') {
+                closeReceipt();
+            }
+        });
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formMessage = document.getElementById('formMessage');
+            const email = form.email.value.trim();
+            const tourSelect = form.tour;
+            const tour = tourSelect.options[tourSelect.selectedIndex].text || tourSelect.value;
+            const date = form.date.value;
+            const people = form.people.value;
+            const amount = form.amount.value;
+            const payment = form.payment.value;
+            const transportSelect = form.transportType;
+            const transportType = transportSelect.options[transportSelect.selectedIndex].text || transportSelect.value;
+            const from = form.from.value.trim();
+            const to = form.to.value.trim();
+            
+            // Form validation
+            if (!email || !tour || !date || !people || !amount || !payment || !transportType || !from || !to) {
+                formMessage.textContent = 'Please fill in all fields.';
+                formMessage.style.color = 'red';
+                return;
+            }
+            
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.style.color = 'red';
+                return;
+            }
+            
+            const today = new Date();
+            const selectedDate = new Date(date);
+            today.setHours(0, 0, 0, 0);
+            if (selectedDate < today) {
+                formMessage.textContent = 'Please select a valid date (not in the past).';
+                formMessage.style.color = 'red';
+                return;
+            }
+            
+            if (isNaN(people) || Number(people) < 1) {
+                formMessage.textContent = 'Number of people must be at least 1.';
+                formMessage.style.color = 'red';
+                return;
+            }
+            
+            // Create booking object
+            const bookingData = {
+                id: generateBookingId(),
+                customerName: form.customerName.value.trim(),
+                email: email,
+                tour: tour,
+                people: people,
+                amount: amount,
+                transportType: transportType,
+                from: from,
+                to: to,
+                date: date,
+                payment: payment,
+                status: 'Pending',
+                bookingDate: new Date().toISOString()
+            };
+            
+            // Show receipt and save booking
+            const totalAmount = Number(bookingData.amount) * Number(bookingData.people);
+            const receipt = `
+                <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 12px; border: 1px solid #ccc;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h2 style="color: lightgray; margin: 0;">Zam-Travel</h2>
+                        <p style="color: lightgray; margin: 5px 0;">Guiding You Through Zambia</p>
+                    </div>
+                    <h3 style="text-align: center; color: #007bff; margin-bottom: 20px;">Payment Receipt</h3>
+                    <div style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        <strong>Booking ID:</strong> ${bookingData.id}
+                        <div style="float: right;"><strong>Date:</strong> ${new Date().toLocaleDateString()}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: #555; margin-bottom: 10px;">Customer Details</h4>
+                        <div><strong>Name:</strong> ${bookingData.customerName}</div>
+                        <div><strong>Email:</strong> ${bookingData.email}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: #555; margin-bottom: 10px;">Tour Details</h4>
+                        <div><strong>Tour Package:</strong> ${bookingData.tour}</div>
+                        <div><strong>Travel Date:</strong> ${bookingData.date}</div>
+                        <div><strong>Number of People:</strong> ${bookingData.people}</div>
+                        <div><strong>From:</strong> ${bookingData.from}</div>
+                        <div><strong>To:</strong> ${bookingData.to}</div>
+                        <div><strong>Transport Type:</strong> ${bookingData.transportType}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: #555; margin-bottom: 10px;">Payment Details</h4>
+                        <div><strong>Price per Person:</strong> ZMW ${bookingData.amount}</div>
+                        <div><strong>Total Amount:</strong> ZMW ${totalAmount.toFixed(2)}</div>
+                        <div><strong>Payment Method:</strong> ${bookingData.payment}</div>
+                    </div>
+                    <div style="text-align: center; font-size: 0.9em; color: #666; margin-top: 30px;">
+                        <p>Thank you for choosing Zam-Travel!</p>
+                        <p>For any queries, please contact us at support@zam-travel.com</p>
+                    </div>
+                </div>
+            `;
+            
+            // Show receipt modal
+            showReceiptModal(receipt);
+            
+            // Save the booking to admin dashboard (localStorage.bookings)
+            try {
+                if (window.saveBookingClientSide) {
+                    const adminBooking = {
+                        bookingId: bookingData.id,
+                        tour: bookingData.tour,
+                        customerName: bookingData.customerName,
+                        email: bookingData.email,
+                        date: bookingData.date,
+                        people: Number(bookingData.people),
+                        amount: String(bookingData.amount),
+                        payment: bookingData.payment,
+                        approved: false,
+                        transportType: bookingData.transportType,
+                        from: bookingData.from,
+                        to: bookingData.to
+                    };
+                    window.saveBookingClientSide(adminBooking, { overwriteIfSameId: true });
+                }
+            } catch (err) {
+                console.warn('Could not save booking to admin dashboard:', err);
+            }
+
+            // Save the booking and redirect to history
+            saveBookingToHistory(bookingData);
+            
+            // Reset form
+            formMessage.textContent = 'Booking successful! Redirecting to history...';
+            formMessage.style.color = 'green';
+            form.reset();
+        });
+    </script>
+</body>
+</html>

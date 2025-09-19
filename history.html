@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking History</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/App.css">
+  <link rel="icon" type="image/png" href="./logo/Zam.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* General Layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+    }
+    main { flex: 1 0 auto; padding: 1rem; }
+    footer { flex-shrink: 0; }
+    /* NAVBAR (copied from index.html) */
+    .navbar {
+      padding: 0.5rem 2rem;
+      background: linear-gradient(to right, lightgray, whitesmoke);
+      height: 75px;
+      min-height: 75px;
+    }
+    /* Ensure inner container is flex so ms-auto works on toggler */
+    .navbar .container-fluid {
+      display: flex;
+      align-items: center;
+    }
+    /* Push toggle to the right and align nicely */
+    .navbar-toggler {
+      margin-left: auto;
+      border: none;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .logo-img {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+    }
+    .logo-title-motto-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .navbar-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: black;
+    }
+    .navbar-motto {
+      font-size: 0.8rem;
+      color: black;
+      align-self: flex-end;
+    }
+
+    /* Navbar links right aligned */
+    .navbar-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin-left: auto;
+      margin-bottom: 0;
+      background-color: whitesmoke;
+    }
+    .navbar-links li {
+      position: relative;
+    }
+    .navbar-links a {
+      text-decoration: none;
+      color: #000;
+      padding: 0.5rem 1rem;
+      display: block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .navbar-links a:hover {
+      background-color: lightgray;
+      color: #fff;
+      border-radius: 6px;
+    }
+
+    /* Dropdown */
+    .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 0.5rem 0;
+      z-index: 1000;
+    }
+    .dropdown-item {
+      padding: 0.5rem 1rem;
+      color: #333;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-item:hover {
+      background-color: lightgray;
+      color: #fff;
+    }
+    .dropdown-item i {
+      margin-right: 0.5rem;
+    }
+
+    
+
+    /* History Table */
+    .history-table-container {
+      max-width: 100%;
+      overflow-x: auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 1rem;
+    }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+    .history-table th, .history-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .history-table th {
+      background: #f5f5f5;
+    }
+    .status-badge {
+      padding: 0.25em 0.8em;
+      border-radius: 12px;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: #fff;
+    }
+    .status-approved { background: #27ae60; }
+    .status-pending { background: #f39c12; }
+    .delete-btn {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .delete-btn:hover { background: #b52a37; }
+
+    /* Footer */
+    .main-footer {
+      background: black;
+      padding: 1rem;
+      text-align: center;
+    }
+    .footer{
+      color: white;
+    }
+    .success-message {
+      display: inline-block;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      padding: 0.5em 1em;
+      margin: 0.2em 0;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .success-message:hover {
+      background-color: #b7e4c7;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg d-flex align-items-center">
+    <div class="container-fluid p-0">
+      <div class="navbar-logo d-flex align-items-center">
+        <img src="./logo/Zam.png" alt="ZamTravel Logo" class="logo-img">
+        <div class="logo-title-motto-text">
+          <span class="navbar-title">Zam-Travel</span>
+          <span class="navbar-motto">Guiding You Through Zambia</span>
+        </div>
+      </div>
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-links navbar-nav ms-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+          <li class="nav-item dropdown enhanced-dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Options
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="booking.html"><i class="fas fa-ticket-alt me-2"></i>Booking</a></li>
+              <li><a class="dropdown-item" href="history.html"><i class="fas fa-clipboard-list me-2"></i>Management</a></li>
+              <li><a class="dropdown-item" href="transport.html"><i class="fas fa-bus me-2"></i>Transport</a></li>
+              <li><a class="dropdown-item" href="accommodations.html"><i class="fas fa-bed me-2"></i>Accommodations</a></li>
+              <li><a class="dropdown-item" href="About us.html"><i class="fas fa-user-tie me-2"></i>About us</a></li>
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>User profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="auth.html"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Section -->
+  <main>
+    <section>
+      <div class="history-table-container">
+        <h2>Booking History</h2>
+        <table class="history-table" id="historyTable">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Email</th>
+              <th>Tour</th>
+              <th>Date</th>
+              <th>People</th>
+              <th>Amount (ZMW)</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <!-- Dynamic rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer">
+      <p>&copy; 2024 Zambia Travel Agency. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+
+  <!-- Script -->
+  <script>
+    // Toggle mobile menu
+    document.querySelector('.menu-toggle')?.addEventListener('click', function() {
+      document.querySelector('.navbar-links').classList.toggle('active');
+    });
+
+    // Render booking history table
+    function renderHistoryTable() {
+      const tbody = document.getElementById('historyTableBody');
+      if (!tbody) return;
+      
+      tbody.innerHTML = '';
+
+      // Get bookings from localStorage
+      const bookings = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
+
+      if (bookings.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="9" class="text-center">No bookings found</td>';
+        tbody.appendChild(row);
+        return;
+      }
+
+      // Sort bookings by date (newest first)
+      bookings.sort((a, b) => new Date(b.bookingDate) - new Date(a.bookingDate));
+
+      bookings.forEach(booking => {
+        const row = document.createElement('tr');
+        
+        // Status badge
+        let statusClass = 'status-pending';
+        if (booking.status === 'Confirmed') statusClass = 'status-approved';
+        if (booking.status === 'Cancelled') statusClass = 'status-cancelled';
+
+        row.innerHTML = `
+          <td>${booking.id}</td>
+          <td>${booking.email}</td>
+          <td>${booking.tour}</td>
+          <td>${new Date(booking.date).toLocaleDateString()}</td>
+          <td>${booking.people}</td>
+          <td>ZMW ${parseFloat(booking.amount).toFixed(2)}</td>
+          <td>${booking.payment}</td>
+          <td><span class="status-badge ${statusClass}">${booking.status}</span></td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick="deleteBooking('${booking.id}')">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function deleteBooking(bookingId) {
+      if (confirm('Are you sure you want to delete this booking?')) {
+        const bookings = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
+        const updatedBookings = bookings.filter(booking => booking.id !== bookingId);
+        
+        if (updatedBookings.length < bookings.length) {
+          localStorage.setItem('bookingHistory', JSON.stringify(updatedBookings));
+          alert('Booking deleted successfully!');
+          renderHistoryTable();
+        } else {
+          alert('Booking not found!');
+        }
+      }
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+      renderHistoryTable();
+    });
+  </script>
+</body>
+</html>
